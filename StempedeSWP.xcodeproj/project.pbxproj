@@ -6,6 +6,12 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		00879F322CFEC29B00120423 /* Stripe in Frameworks */ = {isa = PBXBuildFile; productRef = 00879F312CFEC29B00120423 /* Stripe */; };
+		00879F342CFEC29B00120423 /* StripeCardScan in Frameworks */ = {isa = PBXBuildFile; productRef = 00879F332CFEC29B00120423 /* StripeCardScan */; };
+		00879F362CFEC29B00120423 /* StripePaymentSheet in Frameworks */ = {isa = PBXBuildFile; productRef = 00879F352CFEC29B00120423 /* StripePaymentSheet */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		00879DC42CFD6FF300120423 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -29,9 +35,22 @@
 		00879DCD2CFD6FF300120423 /* StempedeSWPUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = StempedeSWPUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		00879F792D01A1DE00120423 /* Exceptions for "StempedeSWP" folder in "StempedeSWP" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = 00879DB22CFD6FF100120423 /* StempedeSWP */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		00879DB52CFD6FF100120423 /* StempedeSWP */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				00879F792D01A1DE00120423 /* Exceptions for "StempedeSWP" folder in "StempedeSWP" target */,
+			);
 			path = StempedeSWP;
 			sourceTree = "<group>";
 		};
@@ -52,6 +71,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				00879F342CFEC29B00120423 /* StripeCardScan in Frameworks */,
+				00879F362CFEC29B00120423 /* StripePaymentSheet in Frameworks */,
+				00879F322CFEC29B00120423 /* Stripe in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -112,6 +134,9 @@
 			);
 			name = StempedeSWP;
 			packageProductDependencies = (
+				00879F312CFEC29B00120423 /* Stripe */,
+				00879F332CFEC29B00120423 /* StripeCardScan */,
+				00879F352CFEC29B00120423 /* StripePaymentSheet */,
 			);
 			productName = StempedeSWP;
 			productReference = 00879DB32CFD6FF100120423 /* StempedeSWP.app */;
@@ -195,6 +220,9 @@
 			);
 			mainGroup = 00879DAA2CFD6FF100120423;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				00879F302CFEC29B00120423 /* XCRemoteSwiftPackageReference "stripe-ios-spm" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 00879DB42CFD6FF100120423 /* Products */;
 			projectDirPath = "";
@@ -399,6 +427,8 @@
 				DEVELOPMENT_TEAM = TQKAT5B374;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = StempedeSWP/Info.plist;
+				INFOPLIST_KEY_NSFaceIDUsageDescription = "Xừ dụng để bảo mật";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -428,6 +458,8 @@
 				DEVELOPMENT_TEAM = TQKAT5B374;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = StempedeSWP/Info.plist;
+				INFOPLIST_KEY_NSFaceIDUsageDescription = "Xừ dụng để bảo mật";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -558,6 +590,35 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		00879F302CFEC29B00120423 /* XCRemoteSwiftPackageReference "stripe-ios-spm" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/stripe/stripe-ios-spm";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 24.1.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		00879F312CFEC29B00120423 /* Stripe */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 00879F302CFEC29B00120423 /* XCRemoteSwiftPackageReference "stripe-ios-spm" */;
+			productName = Stripe;
+		};
+		00879F332CFEC29B00120423 /* StripeCardScan */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 00879F302CFEC29B00120423 /* XCRemoteSwiftPackageReference "stripe-ios-spm" */;
+			productName = StripeCardScan;
+		};
+		00879F352CFEC29B00120423 /* StripePaymentSheet */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 00879F302CFEC29B00120423 /* XCRemoteSwiftPackageReference "stripe-ios-spm" */;
+			productName = StripePaymentSheet;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 00879DAB2CFD6FF100120423 /* Project object */;
 }
