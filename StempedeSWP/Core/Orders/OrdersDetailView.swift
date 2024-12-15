@@ -33,13 +33,13 @@ struct OrdersDetailView: View {
                     List{
                         ForEach(viewModel.ordersDetailResponse) { detail in
                             VStack(alignment: .leading) {
-                                LabeledContent {
-                                    HStack {
-                                        Text(detail.OrderPrice, format: .currency(code: Locale.current.currency?.identifier ?? ""))
-                                        Spacer()
-                                        Text("x\(detail.Quantity)").font(.callout).bold()
-                                    }
-                                } label: {
+//                                LabeledContent {
+//                                    HStack {
+//                                        Text(detail.OrderPrice, format: .currency(code: Locale.current.currency?.identifier ?? ""))
+//                                        Spacer()
+//                                        Text("x\(detail.Quantity)").font(.callout).bold()
+//                                    }
+//                                } label: {
                                     AsyncImage(url: URL(string: detail.ImagePath)) { image in
                                         image
                                             .resizable()
@@ -49,11 +49,17 @@ struct OrdersDetailView: View {
                                         Color(.secondarySystemBackground)
                                             .cornerRadius(15)
                                     }
+                                HStack {
+                                    Text(detail.OrderPrice, format: .currency(code: Locale.current.currency?.identifier ?? ""))
+                                        .foregroundStyle(.red)
+                                    Spacer()
+                                    Text("x\(detail.Quantity)").font(.callout).bold()
+                                }
                                     Text("\(detail.ProductName)")
                                     Text("Mô tả: \(detail.ProductDescription)")
                                         .font(.caption)
                                         .foregroundStyle(.secondary)
-                                }
+//                                }
                                 VStack(alignment: .leading){
                                     Text("Bài lab đính kèm")
                                         .font(.title.bold())
@@ -90,6 +96,7 @@ struct OrdersDetailView: View {
                                         Text("Không có video")
                                     }
                                 }
+//                                Divider()
                             }
                         }
                     }

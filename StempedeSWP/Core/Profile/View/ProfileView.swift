@@ -86,8 +86,20 @@ struct ProfileView: View {
                         }
                         
                         Section{
-                            Text("Báo cáo lỗi")
-                            Text("Gợi ý mới")
+                            Button{
+                                let telephone = "tel://0835488888"
+                                guard let url = URL(string: telephone) else { return }
+                                   UIApplication.shared.open(url)
+                            }label: {
+                                Text("Liên hệ chúng tôi qua SDT")
+                            }
+                            Button {
+                                let email = "mailto:stemkit24@gmail.com"
+                                guard let url = URL(string: email) else { return }
+                                UIApplication.shared.open(url)
+                            } label: {
+                                Text("Liên hệ Email")
+                            }
                         }header: {
                             Label("Support", systemImage: "questionmark.circle.fill")
                         }

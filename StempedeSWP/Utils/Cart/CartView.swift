@@ -27,17 +27,25 @@ struct CartView: View {
         List {
             // Get grouped items from the cart manager
             let items = cartManager.getGroupedCart()
-            
+            if let error = viewModel.error {
+                Text("Lỗi: \(error.localizedDescription)")
+                    .foregroundColor(.red)
+                    .font(.callout.bold())
+                    .padding()
+            }
             // Iterate over the items in the cart
             ForEach(Array(items.keys).sorted(by: { $0.ProductName < $1.ProductName }), id: \.self) { cartItem in
-                // Get the count of each item
+                // Get the count of  each item
                 let count = items[cartItem]!
                 
                 // Display cart item details
                 LabeledContent {
                     let price = cartItem.Price * Double(count)
                     HStack {
-                        Text(price, format: .currency(code: Locale.current.currency?.identifier ?? ""))
+                        VStack{
+                            Text(cartItem.Price, format: .currency(code: Locale.current.currency?.identifier ?? ""))
+                                .font(.callout).bold()
+                        }
                         Spacer()
                         Text("x\(count)").font(.callout).bold()
                     }
@@ -104,8 +112,13 @@ struct CartView: View {
                         .font(.callout.bold())
                         .foregroundStyle(.green)
                         .onAppear {
-                            successMessage = "Thanh toán thành công. Cảm ơn bạn đã mua sắm!"
-                            showAlert = true // Show the alert
+                            Task{
+                                let response = try await viewModel.prepareAndCreateOrder(userID: UserID, cartManager: cartManager)
+                                if response.message != nil {
+                                    successMessage = "Thanh toán thành công. Cảm ơn bạn đã mua sắm!"
+                                    showAlert = true // Show the alert
+                                }
+                            }
                         }
                 case .failed(let error):
                     Text("Thanh toán thất bại: \(error.localizedDescription)")
@@ -119,12 +132,6 @@ struct CartView: View {
             }
 
             // Display the error as text if there is an error
-            if let error = viewModel.error {
-                Text("Lỗi: \(error.localizedDescription)")
-                    .foregroundColor(.red)
-                    .font(.callout.bold())
-                    .padding()
-            }
         }
         .disabled(viewModel.loadingState == .loading) // Disable interactions during loading
         .overlay(
@@ -141,6 +148,7 @@ struct CartView: View {
                 title: Text(successMessage),
                 dismissButton: .default(Text("OK")) {
                     // Handle dismissal and reset
+                    
                     viewModel.paymentResult = nil
                     routerManager.reset()
                     routerManager.push(to: .orders)
